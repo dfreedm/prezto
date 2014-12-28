@@ -11,3 +11,83 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+path=(
+  ${HOME}/bin
+  $path
+)
+
+export EDITOR="vim"
+FCEDIT=$EDITOR
+export FCEDIT
+
+if (( $+commands[ack-grep] )); then
+  alias ack=ack-grep
+fi
+
+alias time='command time'
+
+err ()
+{
+      case $1 in
+         E*)
+            errconst=$1
+            unset errno
+            if [ "${errno}" = "" ] && command -v python > /dev/null 2>&1 ; then
+               errno=`python -c "import errno;print(errno.${errconst})" 2>/dev/null`
+            fi
+            if [ "${errno}" = "" ] && command -v perl > /dev/null 2>&1 ; then
+               errno=`perl -MErrno -e "print &Errno::${errconst}.\"\n\";" 2>/dev/null`
+            fi
+            if [ "${errno}" = "" ] && command -v ruby > /dev/null 2>&1 ; then
+               errno=`ruby -e "puts Errno::${errconst}::Errno" 2>/dev/null`
+            fi
+            if [ "${errno}" = "" ] && [ -e /usr/include/errno.h ] ; then
+               errno=`cpp -E -dM /usr/include/errno.h | grep -E "${errconst}[[:space:]]+[0-9]+$" | grep -oE '[0-9]+' 2>/dev/null`
+            fi
+
+            if [ "${errno}" ] ; then
+               echo "${errconst} = ${errno}"
+            else
+               return 1
+            fi
+         ;;
+         *)
+            errno=$1
+            unset errconst
+            if [ "${errconst}" = "" ] && command -v ruby > /dev/null 2>&1 ; then
+               errconst=`ruby -e "puts Errno.constants.find_all{|err| Errno.const_get(err)::Errno == ${errno} }" 2>/dev/null`
+            fi
+            if [ "${errconst}" = "" ] && command -v python > /dev/null 2>&1 ; then
+               errconst=`python -c "import errno;print(errno.errorcode[${errno}])" 2>/dev/null`
+            fi
+            if [ "${errconst}" ] ; then
+               errconst="${errconst} = ${errno}"
+            fi
+            if [ "${errconst}" = "" ] && [ -e /usr/include/errno.h ] ; then
+               errconst=`cpp -E -dM /usr/include/errno.h | grep -E "E[[:alnum:]]+[[:space:]]+${errno}$"`
+            fi
+
+            if [ "${errconst}" ] ; then
+               echo $errconst
+            else
+               return 1
+            fi
+         ;;
+   esac
+
+   unset errstr
+   if [ "${errstr}" = "" ] && command -v perl > /dev/null 2>&1 ; then
+      errstr=`perl -MPOSIX -e 'print strerror($ARGV[0])."\n";' $errno`
+   fi
+   if [ "${errstr}" = "" ] && command -v python > /dev/null 2>&1 ; then
+      errstr=`python -c "import os;print(os.strerror($errno))" 2>/dev/null`
+   fi
+
+   if [ "${errstr}" ] ; then
+      echo $errstr
+   else
+      return 2
+   fi
+}
+
+stty -ixon -ixoff 2>/dev/null
