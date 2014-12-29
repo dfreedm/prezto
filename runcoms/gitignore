@@ -1,0 +1,16 @@
+*.o
+cscope.*
+ctags
+.DS_Store
+Thumbs.db
+*~
+tags
+.*.swo
+.*.swp
+._*
+.nfs.*
+.__afs*
+*.aux
+*.log
+*.dvi
+*.mode*v*

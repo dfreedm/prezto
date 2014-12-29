@@ -1,0 +1,27 @@
+#!/bin/bash
+COMMAND=$1
+
+copy() {
+  if command -v pbcopy 2>&1 >/dev/null; then
+    pbcopy <&0
+  elif command -v xsel 2>&1 >/dev/null; then
+    xsel -i -b <&0
+  fi
+}
+
+paste() {
+  if command -v pbcopy 2>&1 >/dev/null; then
+    pbpaste
+  elif command -v xsel 2>&1 >/dev/null; then
+    xsel -o -b
+  fi
+}
+
+case $COMMAND in
+  c)
+    copy
+    ;;
+  v)
+    paste
+    ;;
+esac

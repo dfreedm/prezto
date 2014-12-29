@@ -153,7 +153,15 @@ fi
 # Miscellaneous
 
 # Serves a directory via HTTP.
-alias http-serve='python -m SimpleHTTPServer'
+if (( $+commands[python] )); then
+  local _pyver=`python -c 'print(__import__("sys").version_info.major)'`
+  if [[ ${_pyver} = 2 ]]; then
+    alias http-serve='python -m SimpleHTTPServer'
+  elif [[ ${_pyver} = 3 ]]; then
+    alias http-serve='python -m http.server'
+  fi
+  unset _pyver
+fi
 
 #
 # Functions

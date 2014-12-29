@@ -36,6 +36,7 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'archive' \
   'rsync' \
+  'tmux' \
   'syntax-highlighting' \
   'history-substring-search' \
   'completion' \
@@ -161,4 +162,4 @@ zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
 # Integrate with iTerm2.
-# zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+zstyle ':prezto:module:tmux:iterm' integrate 'yes'

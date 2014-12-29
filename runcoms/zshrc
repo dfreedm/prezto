@@ -13,12 +13,9 @@ fi
 # Customize to your needs...
 path=(
   ${HOME}/bin
+  ${HOME}/.zprezto/bin
   $path
 )
-
-export EDITOR="vim"
-FCEDIT=$EDITOR
-export FCEDIT
 
 if (( $+commands[ack-grep] )); then
   alias ack=ack-grep
@@ -28,66 +25,202 @@ alias time='command time'
 
 err ()
 {
-      case $1 in
-         E*)
-            errconst=$1
-            unset errno
-            if [ "${errno}" = "" ] && command -v python > /dev/null 2>&1 ; then
-               errno=`python -c "import errno;print(errno.${errconst})" 2>/dev/null`
-            fi
-            if [ "${errno}" = "" ] && command -v perl > /dev/null 2>&1 ; then
-               errno=`perl -MErrno -e "print &Errno::${errconst}.\"\n\";" 2>/dev/null`
-            fi
-            if [ "${errno}" = "" ] && command -v ruby > /dev/null 2>&1 ; then
-               errno=`ruby -e "puts Errno::${errconst}::Errno" 2>/dev/null`
-            fi
-            if [ "${errno}" = "" ] && [ -e /usr/include/errno.h ] ; then
-               errno=`cpp -E -dM /usr/include/errno.h | grep -E "${errconst}[[:space:]]+[0-9]+$" | grep -oE '[0-9]+' 2>/dev/null`
-            fi
+  case $1 in
+    E*)
+      errconst=$1
+      unset errno
+      if [ "${errno}" = "" ] && command -v python > /dev/null 2>&1 ; then
+        errno=`python -c "import errno;print(errno.${errconst})" 2>/dev/null`
+      fi
+      if [ "${errno}" = "" ] && command -v perl > /dev/null 2>&1 ; then
+        errno=`perl -MErrno -e "print &Errno::${errconst}.\"\n\";" 2>/dev/null`
+      fi
+      if [ "${errno}" = "" ] && command -v ruby > /dev/null 2>&1 ; then
+        errno=`ruby -e "puts Errno::${errconst}::Errno" 2>/dev/null`
+      fi
+      if [ "${errno}" = "" ] && [ -e /usr/include/errno.h ] ; then
+        errno=`cpp -E -dM /usr/include/errno.h | grep -E "${errconst}[[:space:]]+[0-9]+$" | grep -oE '[0-9]+' 2>/dev/null`
+      fi
 
-            if [ "${errno}" ] ; then
-               echo "${errconst} = ${errno}"
-            else
-               return 1
-            fi
-         ;;
-         *)
-            errno=$1
-            unset errconst
-            if [ "${errconst}" = "" ] && command -v ruby > /dev/null 2>&1 ; then
-               errconst=`ruby -e "puts Errno.constants.find_all{|err| Errno.const_get(err)::Errno == ${errno} }" 2>/dev/null`
-            fi
-            if [ "${errconst}" = "" ] && command -v python > /dev/null 2>&1 ; then
-               errconst=`python -c "import errno;print(errno.errorcode[${errno}])" 2>/dev/null`
-            fi
-            if [ "${errconst}" ] ; then
-               errconst="${errconst} = ${errno}"
-            fi
-            if [ "${errconst}" = "" ] && [ -e /usr/include/errno.h ] ; then
-               errconst=`cpp -E -dM /usr/include/errno.h | grep -E "E[[:alnum:]]+[[:space:]]+${errno}$"`
-            fi
+      if [ "${errno}" ] ; then
+        echo "${errconst} = ${errno}"
+      else
+        return 1
+      fi
+      ;;
+    *)
+      errno=$1
+      unset errconst
+      if [ "${errconst}" = "" ] && command -v ruby > /dev/null 2>&1 ; then
+        errconst=`ruby -e "puts Errno.constants.find_all{|err| Errno.const_get(err)::Errno == ${errno} }" 2>/dev/null`
+      fi
+      if [ "${errconst}" = "" ] && command -v python > /dev/null 2>&1 ; then
+        errconst=`python -c "import errno;print(errno.errorcode[${errno}])" 2>/dev/null`
+      fi
+      if [ "${errconst}" ] ; then
+        errconst="${errconst} = ${errno}"
+      fi
+      if [ "${errconst}" = "" ] && [ -e /usr/include/errno.h ] ; then
+        errconst=`cpp -E -dM /usr/include/errno.h | grep -E "E[[:alnum:]]+[[:space:]]+${errno}$"`
+      fi
 
-            if [ "${errconst}" ] ; then
-               echo $errconst
-            else
-               return 1
-            fi
-         ;;
-   esac
+      if [ "${errconst}" ] ; then
+        echo $errconst
+      else
+        return 1
+      fi
+      ;;
+  esac
 
-   unset errstr
-   if [ "${errstr}" = "" ] && command -v perl > /dev/null 2>&1 ; then
-      errstr=`perl -MPOSIX -e 'print strerror($ARGV[0])."\n";' $errno`
-   fi
-   if [ "${errstr}" = "" ] && command -v python > /dev/null 2>&1 ; then
-      errstr=`python -c "import os;print(os.strerror($errno))" 2>/dev/null`
-   fi
+  unset errstr
+  if [ "${errstr}" = "" ] && command -v perl > /dev/null 2>&1 ; then
+    errstr=`perl -MPOSIX -e 'print strerror($ARGV[0])."\n";' $errno`
+  fi
+  if [ "${errstr}" = "" ] && command -v python > /dev/null 2>&1 ; then
+    errstr=`python -c "import os;print(os.strerror($errno))" 2>/dev/null`
+  fi
 
-   if [ "${errstr}" ] ; then
-      echo $errstr
-   else
-      return 2
-   fi
+  if [ "${errstr}" ] ; then
+    echo $errstr
+  else
+    return 2
+  fi
 }
 
 stty -ixon -ixoff 2>/dev/null
+
+if (( $+commands[tmux] )); then
+  alias dan='tmux -u new -As dan'
+fi
+
+fix_term ()
+{
+  # we were requested to go on screen and we are on a mac
+  if infocmp $1 >/dev/null 2>&1 ; then
+    echo $1
+  else
+    case $1 in
+      rxvt|xterm?*|kterm|putty|screen)
+        fix_term xterm
+        ;;
+      *rxvt?*|Eterm|aterm)
+        fix_term rxvt
+        ;;
+      mlterm)
+        fix_term kterm
+        ;;
+      screen-256colors-bce)
+        fix_term screen-256colors
+        ;;
+      screen-256colors)
+        if infocmp xterm-256colors >/dev/null 2>&1 ; then
+          fix_term xterm-256colors
+        else
+          fix_term screen
+        fi
+        ;;
+      screen?*)
+        fix_term screen
+        ;;
+      putty-vt100)
+        echo "vt100"
+        ;;
+      putty-256color)
+        fix_term xterm-256color
+        ;;
+      *)
+        echo "vt100"
+        ;;
+    esac
+  fi
+}
+
+# sorta hacky, but I cannot find a better way to do this :/
+fix_terminfo_db ()
+{
+  if [ -d "$1" ] && [ `command -v infocmp 2>/dev/null` = "$1/bin/infocmp" ] ; then
+    TERMINFO="$1/share/terminfo"
+    export TERMINFO
+  fi
+}
+
+if command -v infocmp >/dev/null 2>&1 ; then
+  # terminal surgery
+  case `uname -s` in
+    Interix)
+      fix_terminfo_db "/usr/local"
+      ;;
+    SunOS)
+      fix_terminfo_db "/opt/csw"
+      ;;
+    Darwin)
+      fix_terminfo_db "/opt/local"
+      ;;
+  esac
+
+  if [ -n "${COLORTERM}" -o -n "${XTERM_VERSION}" -o -n "${TERM_PROGRAM}" ]; then
+    if [ "${COLORTERM}" = "gnome-terminal" ] || [ "${COLORTERM}" = "xfce4-terminal" ]; then
+      TERM="xterm-256color"
+    fi
+  elif [ -n "${SSH_TTY}" ] ; then
+    answerback_cmd="answerback.`uname -s`"
+    if command -v ${answerback_cmd} >/dev/null 2>&1 ; then
+      ANSWERBACK=`${answerback_cmd} 2>/dev/null`
+      export ANSWERBACK
+    fi
+  fi
+
+  TERM=`fix_term $TERM`
+
+  # I am sorry to hear that you are running an
+  # xterm that has no colors (I am looking at you solaris)
+  if [ $TERM = xterm ] && command -v tput >/dev/null 2>&1 && [ `tput -T xterm colors` = -1 ] ; then
+    # lets see what we can do about your terrible term
+    TERM=`fix_term xterm-color`
+  fi
+
+  export TERM
+
+  case $TERM in
+    *256*)
+      if command -v screen >/dev/null 2>&1; then
+        alias screen="screen -T `fix_term xterm-256color`"
+      fi
+      ;;
+    linux)
+      # Base16 Eighties palette for framebuffers
+      printf "\033]P02d2d2d"
+      printf "\033]P1f2777a"
+      printf "\033]P299cc99"
+      printf "\033]P3ffcc66"
+      printf "\033]P46699cc"
+      printf "\033]P5cc99cc"
+      printf "\033]P666cccc"
+      printf "\033]P7d3d0c8"
+      printf "\033]P8747369"
+      printf "\033]P9f2777a"
+      printf "\033]PA99cc99"
+      printf "\033]PBffcc66"
+      printf "\033]PC6699cc"
+      printf "\033]PDcc99cc"
+      printf "\033]PE66cccc"
+      printf "\033]PFf2f0ec"
+      ;;
+  esac
+fi
+
+if (( $+commands[packer] )); then
+  alias packer='packer --auronly'
+fi
+
+if (( $+commands[perl] )); then
+  export PERL_LOCAL_LIB_ROOT="${HOME}/.perl5";
+  export PERL_MB_OPT="--install_base ${HOME}/.perl5";
+  export PERL_MM_OPT="INSTALL_BASE=${HOME}/.perl5";
+  export PERL5LIB=`perl -MConfig -e 'print "$ENV{HOME}/.perl5/lib/perl5/$Config{archname}:$ENV{HOME}/.perl5/lib/perl5"'`;
+  path=(
+    ${HOME}/.perl5/bin
+    $path
+  )
+fi
+#  vim: set ts=2 sw=2 tw=80:
