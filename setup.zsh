@@ -5,7 +5,7 @@
 
 setopt EXTENDED_GLOB
 for rcfile in $PWD/runcoms/^README.md; do
-  ln -sf "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+  ln -sfn "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
 
 if (( $+commands[cc] )); then
