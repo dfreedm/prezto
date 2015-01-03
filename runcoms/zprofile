@@ -18,7 +18,7 @@ fi
 #
 
 export EDITOR='vim'
-export VISUAL='gvim'
+export VISUAL='gvim -f'
 export PAGER='less'
 export FCEDIT=$EDITOR
 
