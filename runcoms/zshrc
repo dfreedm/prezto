@@ -223,4 +223,11 @@ if (( $+commands[perl] )); then
     $path
   )
 fi
+
+if [[ -d ${HOME}/homebrew ]]; then
+  path=(
+    ${HOME}/homebrew/bin
+    $path
+  )
+fi
 #  vim: set ts=2 sw=2 tw=80:
