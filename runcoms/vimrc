@@ -80,6 +80,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-perl/vim-perl'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install --silent' }
+Plug 'moll/vim-node'
 call plug#end()
 
 " ---- Load colorscheme after pathogen ----
@@ -401,3 +403,34 @@ let g:ctrlp_custom_ignore = {
 
 " ---- github-issues ----
 let g:gissues_lazy_load = 1
+
+" ---- javascript indent ----
+" Credit to https://gist.github.com/nisaacson/6939960
+nnoremap <silent> <leader>e :call JSFormat()<cr>
+
+function! JSFormat()
+  " Preparation: save last search, and cursor position.
+  let l:win_view = winsaveview()
+  let l:last_search = getreg('/')
+  let fileWorkingDirectory = expand('%:p:h')
+  let currentWorkingDirectory = getcwd()
+  execute ':lcd' . fileWorkingDirectory
+  execute ':silent' . '%!esformatter'
+  if v:shell_error
+    undo
+    "echo "esformatter error, using builtin vim formatter"
+    " use internal formatting command
+    execute ":silent normal! gg=G<cr>"
+  endif
+  " Clean up: restore previous search history, and cursor position
+  execute ':lcd' . currentWorkingDirectory
+  call winrestview(l:win_view)
+  call setreg('/', l:last_search)
+endfunction
+
+" ---- vim-node ----
+autocmd User Node
+   \ if &filetype == "javascript" |
+   \ nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
+   \ nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
+   \ endif
