@@ -31,7 +31,7 @@
 	tree = log --graph --pretty=oneline
 	hist = log --graph --pretty=format:'%C(cyan)%h%Creset -%C(yellow)%d%Creset %s %C(magenta)[%an]%Creset %Cgreen(%ad)%Creset' --date=relative
 	credit = !sh -c 'git commit --amend --author \"$1\" -C HEAD' -
-	latest-version = !git checkout `git describe --tags --abbrev=0`
+	latest-version = !git fetch --tags && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 
 	vimdiff = difftool -y -t vimdiff
 [color]
