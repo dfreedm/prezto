@@ -60,7 +60,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'bling/vim-airline'
 Plug 'drmikehenry/vim-fontdetect'
 Plug 'elzr/vim-json'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'godlygeek/tabular'
 Plug 'jaxbot/github-issues.vim'
 Plug 'jeetsukumaran/vim-filebeagle'

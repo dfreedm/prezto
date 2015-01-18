@@ -10,6 +10,13 @@ if [[ "$OSTYPE" != darwin* ]]; then
   return 1
 fi
 
+if (( !$+commands[brew] )) && [[ -d ${HOME}/homebrew ]]; then
+  path=(
+    ${HOME}/homebrew/bin
+    $path
+  )
+fi
+
 #
 # Aliases
 #
