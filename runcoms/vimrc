@@ -60,7 +60,14 @@ call plug#begin('~/.vim/bundle')
 Plug 'bling/vim-airline'
 Plug 'drmikehenry/vim-fontdetect'
 Plug 'elzr/vim-json'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+function! BuildGo(info)
+   if a:info.status == 'installed'
+      :GoInstallBinaries
+   elseif a:info.status == 'updated' || a:info.force
+      :GoUpdateBinaries
+   endif
+endfunction
+Plug 'fatih/vim-go', { 'do': function('BuildGo') }
 Plug 'godlygeek/tabular'
 Plug 'jaxbot/github-issues.vim'
 Plug 'jeetsukumaran/vim-filebeagle'
@@ -80,7 +87,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-perl/vim-perl'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install --silent' }
+function! BuildTern(info)
+   if a:info.status != 'unchanged' || a:info.force
+      !npm install --silent
+   endif
+endfunction
+Plug 'marijnh/tern_for_vim', { 'do': function('BuildTern') }
 Plug 'moll/vim-node'
 call plug#end()
 
