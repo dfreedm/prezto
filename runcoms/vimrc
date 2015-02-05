@@ -365,8 +365,7 @@ let g:html_indent_style1 = "inc"
 let g:user_emmet_settings = {
 \  'html': {
 \     'default_attributes': {
-\        'polymer-element': [{'name': ''}, {'attributes': ''}],
-\        'link:import': [{'rel': 'import'}, {'href': ''}]
+\        'polymer-element': [{'name': ''}, {'attributes': ''}]
 \     },
 \     'expandos': {
 \        'polymer-element': 'polymer-element > template + script'
