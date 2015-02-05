@@ -413,7 +413,9 @@ let g:ctrlp_custom_ignore = {
 \}
 
 " ---- github-issues ----
+let g:github_upstream_issues = 1
 let g:gissues_lazy_load = 1
+let g:gissues_async_omni = 1
 
 " ---- javascript indent ----
 " Credit to https://gist.github.com/nisaacson/6939960
