@@ -94,6 +94,7 @@ function! BuildTern(info)
 endfunction
 Plug 'marijnh/tern_for_vim', { 'do': function('BuildTern') }
 Plug 'moll/vim-node'
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 " ---- Load colorscheme after pathogen ----
