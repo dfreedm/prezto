@@ -404,6 +404,9 @@ let g:syntastic_auto_jump = 2
 nnoremap <silent><leader>sc :SyntasticCheck<CR>
 nnoremap <silent><leader>se :Errors<CR>
 
+" lint inline javascript
+let g:syntastic_html_checkers = ['jshint']
+
 " ---- markdown ----
 let g:vim_markdown_folding_disabled = 1
 
