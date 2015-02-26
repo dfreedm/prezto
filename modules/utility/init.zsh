@@ -60,35 +60,41 @@ alias rm="${aliases[rm]:-rm} -i"
 alias type='type -a'
 
 # ls
-if is-callable 'dircolors'; then
-  # GNU Core Utilities
-  alias ls='ls --group-directories-first'
+local _gnu
+if ls --color -d . >/dev/null 2>&1; then
+  _gnu=1
+fi
 
-  if zstyle -t ':prezto:module:utility:ls' color; then
+if zstyle -t ':prezto:module:utility:ls' color; then
+  if is-callable 'dircolors'; then
     if [[ -s "$HOME/.dir_colors" ]]; then
       eval "$(dircolors --sh "$HOME/.dir_colors")"
     else
       eval "$(dircolors --sh)"
     fi
-
-    alias ls="$aliases[ls] --color=auto"
   else
-    alias ls="$aliases[ls] -F"
-  fi
-else
-  # BSD Core Utilities
-  if zstyle -t ':prezto:module:utility:ls' color; then
     # Define colors for BSD ls.
     export LSCOLORS='exfxcxdxbxGxDxabagacad'
 
     # Define colors for the completion system.
     export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
 
-    alias ls='ls -G'
-  else
-    alias ls='ls -F'
   fi
+  if [[ ${_gnu} = 1 ]]; then
+    # GNU Core Utilities
+    alias ls='ls --color=auto'
+  else
+    # BSD Core Utilities
+    alias ls='ls -G'
+  fi
+else
+  alias ls='ls -F'
 fi
+
+if [[ ${_gnu} = 1 ]]; then
+  alias ls="$aliases[ls] --group-directories-first"
+fi
+unset _gnu
 
 alias l='ls -1A'         # Lists in one column, hidden files.
 alias ll='ls -lh'        # Lists human readable sizes.
