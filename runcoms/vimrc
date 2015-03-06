@@ -95,6 +95,7 @@ endfunction
 Plug 'marijnh/tern_for_vim', { 'do': function('BuildTern') }
 Plug 'moll/vim-node'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " ---- Load colorscheme after pathogen ----
@@ -463,3 +464,10 @@ autocmd User Node
    \ nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
    \ nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
    \ endif
+" ---- NERDTree ----
+nnoremap <silent><leader>t :NERDTreeToggle<CR>
+" auto close NERDTree if it is the last window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" show NERDTree if no files are given to edit
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
