@@ -75,7 +75,7 @@ Plug 'jinfield/vim-nginx'
 Plug 'kien/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
-Plug 'nanotech/jellybeans.vim'
+Plug 'w0ng/vim-hybrid'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
@@ -100,7 +100,7 @@ call plug#end()
 
 " ---- Load colorscheme after pathogen ----
 set background=dark
-colorscheme jellybeans
+colorscheme hybrid
 
 " ---- Filetypes ----
 if has('syntax')
