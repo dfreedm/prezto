@@ -398,14 +398,16 @@ let g:airline_inactive_collapse = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 " powerline symbols need to be loaded in VimEnter time
-if has('gui_gtk')
-    if fontdetect#hasFontFamily("Source Code Pro for Powerline,Sauce Code Powerline")
-        let g:airline_powerline_fonts = 1
-    endif
-elseif has('gui_macvim')
-    if fontdetect#hasFontFamily("Source Code Pro for Powerline")
-        let g:airline_powerline_fonts = 1
-     endif
+if has('gui_running')
+   if has('gui_gtk')
+      if fontdetect#hasFontFamily("Source Code Pro for Powerline,Sauce Code Powerline")
+         let g:airline_powerline_fonts = 1
+      endif
+   elseif has('gui_macvim')
+      if fontdetect#hasFontFamily("Source Code Pro for Powerline")
+         let g:airline_powerline_fonts = 1
+      endif
+   endif
 endif
 
 " ---- syntastic ----
