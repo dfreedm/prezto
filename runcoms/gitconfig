@@ -41,7 +41,6 @@
 [core]
 	pager =
 	excludesfile = ~/.gitignore
-	safecrlf = true
 [push]
 	default = simple
 [user]
