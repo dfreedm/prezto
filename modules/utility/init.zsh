@@ -82,13 +82,13 @@ if zstyle -t ':prezto:module:utility:ls' color; then
   fi
   if [[ ${_gnu} = 1 ]]; then
     # GNU Core Utilities
-    alias ls='ls --color=auto'
+    alias ls="${aliases[ls]:-ls} --color=auto"
   else
     # BSD Core Utilities
-    alias ls='ls -G'
+    alias ls="${aliases[ls]:-ls} -G"
   fi
 else
-  alias ls='ls -F'
+  alias ls="${aliases[ls]:-ls} -F"
 fi
 
 if [[ ${_gnu} = 1 ]]; then
@@ -113,7 +113,7 @@ if zstyle -t ':prezto:module:utility:grep' color; then
   export GREP_COLOR='37;45'           # BSD.
   export GREP_COLORS="mt=$GREP_COLOR" # GNU.
 
-  alias grep="$aliases[grep] --color=auto"
+  alias grep="${aliases[grep]:-grep} --color=auto"
 fi
 
 # Mac OS X Everywhere
