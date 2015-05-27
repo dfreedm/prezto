@@ -11,6 +11,5 @@ tags
 .nfs.*
 .__afs*
 *.aux
-*.log
 *.dvi
 *.mode*v*
