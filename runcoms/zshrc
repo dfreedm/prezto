@@ -89,10 +89,6 @@ err ()
 
 stty -ixon -ixoff 2>/dev/null
 
-if (( $+commands[tmux] )); then
-  alias dan='tmux -u new -As dan'
-fi
-
 fix_term ()
 {
   # we were requested to go on screen and we are on a mac
@@ -212,16 +208,4 @@ fi
 if (( $+commands[packer] )); then
   alias packer='packer --auronly'
 fi
-
-if (( $+commands[perl] )); then
-  export PERL_LOCAL_LIB_ROOT="${HOME}/.perl5";
-  export PERL_MB_OPT="--install_base ${HOME}/.perl5";
-  export PERL_MM_OPT="INSTALL_BASE=${HOME}/.perl5";
-  export PERL5LIB=`perl -MConfig -e 'print "$ENV{HOME}/.perl5/lib/perl5/$Config{archname}:$ENV{HOME}/.perl5/lib/perl5"'`;
-  path=(
-    ${HOME}/.perl5/bin
-    $path
-  )
-fi
-
 #  vim: set ts=2 sw=2 tw=80:
