@@ -67,7 +67,7 @@ function! BuildGo(info)
       :GoUpdateBinaries
    endif
 endfunction
-Plug 'fatih/vim-go', { 'do': function('BuildGo') }
+Plug 'fatih/vim-go', { 'do': function('BuildGo'), 'for': 'go' }
 Plug 'godlygeek/tabular'
 Plug 'jaxbot/github-issues.vim'
 Plug 'jeetsukumaran/vim-filebeagle'
@@ -87,13 +87,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-perl/vim-perl'
-function! BuildTern(info)
-   if a:info.status != 'unchanged' || a:info.force
-      !npm install --silent
-   endif
-endfunction
-Plug 'marijnh/tern_for_vim', { 'do': function('BuildTern') }
-Plug 'moll/vim-node'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install --silent', 'for': 'javascript' }
+Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
 call plug#end()
