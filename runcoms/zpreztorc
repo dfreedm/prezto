@@ -39,6 +39,7 @@ zstyle ':prezto:load' pmodule \
   'archive' \
   'rsync' \
   'tmux' \
+  'ruby' \
   'syntax-highlighting' \
   'history-substring-search' \
   'completion' \
