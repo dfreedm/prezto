@@ -16,6 +16,6 @@
 [submodule "modules/prompt/functions/pure"]
 	path = modules/prompt/external/pure
 	url = https://github.com/sindresorhus/pure.git
-[submodule "runcoms/tmux-solarized"]
-	path = runcoms/tmux-solarized
-	url = https://github.com/seebi/tmux-colors-solarized.git
+[submodule "runcoms/tmux/plugins/tpm"]
+	path = runcoms/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
