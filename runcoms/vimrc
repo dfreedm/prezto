@@ -59,7 +59,7 @@ set laststatus=2           " always show a statusline
 " ---- plug ----
 call plug#begin('~/.vim/bundle')
 Plug 'sheerun/vim-polyglot'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'drmikehenry/vim-fontdetect'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
