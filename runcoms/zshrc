@@ -164,12 +164,6 @@ if command -v infocmp >/dev/null 2>&1 ; then
     if [ "${COLORTERM}" = "gnome-terminal" ] || [ "${COLORTERM}" = "xfce4-terminal" ]; then
       TERM="xterm-256color"
     fi
-  elif [ -n "${SSH_TTY}" ] ; then
-    answerback_cmd="answerback.`uname -s`"
-    if command -v ${answerback_cmd} >/dev/null 2>&1 ; then
-      ANSWERBACK=`${answerback_cmd} 2>/dev/null`
-      export ANSWERBACK
-    fi
   fi
 
   TERM=`fix_term $TERM`
