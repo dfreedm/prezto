@@ -64,7 +64,7 @@ Plug 'godlygeek/tabular'
 Plug 'jaxbot/github-issues.vim'
 Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': ['javascript'] }
+Plug 'ternjs/tern_for_vim', { 'do': 'npm --quiet --no-progress install', 'for': ['javascript'] }
 Plug 'mattn/emmet-vim', { 'for': ['html'] }
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
