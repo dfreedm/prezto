@@ -11,7 +11,7 @@
 	sparse = !git-sparse
 	amend = commit --amend -C HEAD
 	credit = !sh -c 'git commit --amend --author \"$1\" -C HEAD' -
-	latest-version = !git fetch -t -p && git checkout `git describe --tags --abbrev=0`
+	latest-version = !git fetch -t -p && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 	vimdiff = difftool -y -t vimdiff
 [color]
 	diff = auto
