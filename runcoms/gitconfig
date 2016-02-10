@@ -18,7 +18,7 @@
 	status = auto
 	branch = auto
 [core]
-	pager =
+	pager = diff-so-fancy | less --tabs=1,5 -R
 	excludesfile = ~/.gitignore
 [push]
 	default = simple
