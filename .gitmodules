@@ -19,6 +19,3 @@
 [submodule "runcoms/tmux/plugins/tpm"]
 	path = runcoms/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "diff-so-fancy"]
-	path = runcoms/diff-so-fancy
-	url = https://github.com/stevemao/diff-so-fancy
