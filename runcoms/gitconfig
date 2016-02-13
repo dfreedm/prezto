@@ -18,7 +18,6 @@
 	status = auto
 	branch = auto
 [core]
-	pager = diff-so-fancy | less --tabs=1,5 -R
 	excludesfile = ~/.gitignore
 [push]
 	default = simple
@@ -29,3 +28,6 @@
 	cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
 [merge]
 	tool = fugitive
+[pager]
+	diff = diff-so-fancy | less --tabs=1,5 -RFX
+	show = diff-so-fancy | less --tabs=1,5 -RFX
