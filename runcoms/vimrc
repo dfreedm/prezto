@@ -81,13 +81,12 @@ function! BuildYCM(info)
    endif
 endfunction
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-Plug 'AlessandroYorba/Sierra'
+Plug 'w0ng/vim-hybrid'
 call plug#end()
 
 " ---- Load colorscheme after pathogen ----
-let g:sierra_Twilight=1
-let g:airline_theme='tomorrow'
-colorscheme sierra
+set background=dark
+colorscheme hybrid
 
 " ---- Filetypes ----
 if has('autocmd')
