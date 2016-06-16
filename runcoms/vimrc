@@ -61,12 +61,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'drmikehenry/vim-fontdetect'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'godlygeek/tabular'
-Plug 'jaxbot/github-issues.vim'
 Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm --quiet --no-progress install', 'for': ['javascript'] }
-Plug 'mattn/emmet-vim', { 'for': ['html'] }
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
@@ -77,7 +74,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 function! BuildYCM(info)
    if a:info.status == 'installed' || a:info.force
-      !python2 install.py
+      !./install.sh
    endif
 endfunction
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
@@ -265,18 +262,6 @@ nnoremap <leader>u :UndotreeToggle<CR>
 let g:NERDSpaceDelims = 1
 let g:NERDRemoveExtraSpaces = 1
 
-" ---- emmet ----
-let g:user_emmet_settings = {
-\  'html': {
-\     'default_attributes': {
-\        'dom-module': [{'id': ''}]
-\     },
-\     'expandos': {
-\        'dom-module': 'dom-module > template + script'
-\     }
-\  }
-\}
-
 " ---- airline ----
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#branch#empty_message = ''
@@ -289,7 +274,6 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
 " ---- syntastic ----
-let g:syntastic_mode_map = { 'passive_filetypes': ['html'] }
 let g:syntastic_ignore_files = ['\.min\.js$', '\.js\.map$']
 " let g:syntastic_check_on_open = 1
 " Jump to first error line
@@ -298,7 +282,7 @@ nnoremap <silent><leader>sc :SyntasticCheck<CR>
 nnoremap <silent><leader>se :Errors<CR>
 
 " lint inline javascript
-let g:syntastic_html_checkers = ['jshint']
+let g:syntastic_html_checkers = ['eslint']
 
 " ---- markdown ----
 let g:vim_markdown_folding_disabled = 1
@@ -308,11 +292,6 @@ nnoremap <silent><leader>b :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore = {
 \ 'dir': '\v[\/](node_modules|bower_components)'
 \}
-
-" ---- github-issues ----
-let g:github_upstream_issues = 1
-let g:gissues_lazy_load = 1
-let g:gissues_async_omni = 1
 
 " ---- YouCompleteMe ----
 let g:ycm_add_preview_to_completeopt = 0
