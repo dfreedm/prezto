@@ -69,6 +69,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-ragtag', { 'for': ['html'] }
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'

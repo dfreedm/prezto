@@ -1,10 +1,10 @@
 [alias]
 	ci = commit
 	co = checkout
+	d = diff
 	di = diff --color-words
-	svnup = !git stash && git svn rebase && git stash apply
-	svnupdate = !git stash && git svn rebase && git stash apply
-	st = status
+	ds = diff --staged
+	st = status --short --branch
 	update-submodules = !git submodule foreach git pull origin master
 	untrack-ignored = !git-untracked-ignored
 	info = !git-info
