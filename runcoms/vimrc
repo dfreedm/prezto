@@ -64,7 +64,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm --quiet --no-progress install', 'for': ['javascript'] }
-Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'mbbill/undotree'
