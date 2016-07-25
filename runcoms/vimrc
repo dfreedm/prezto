@@ -72,12 +72,6 @@ Plug 'tpope/vim-ragtag', { 'for': ['html'] }
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
-function! BuildYCM(info)
-   if a:info.status == 'installed' || a:info.force
-      !./install.sh
-   endif
-endfunction
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'w0ng/vim-hybrid'
 call plug#end()
 
@@ -292,7 +286,3 @@ nnoremap <silent><leader>b :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore = {
 \ 'dir': '\v[\/](node_modules|bower_components)'
 \}
-
-" ---- YouCompleteMe ----
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_confirm_extra_conf = 0
