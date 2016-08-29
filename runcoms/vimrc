@@ -63,14 +63,10 @@ Plug 'drmikehenry/vim-fontdetect'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm --quiet --no-progress install', 'for': ['javascript'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'mbbill/undotree'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-ragtag', { 'for': ['html'] }
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'w0ng/vim-hybrid'
 call plug#end()
