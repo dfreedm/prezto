@@ -12,7 +12,6 @@
 	amend = commit --amend -C HEAD
 	credit = !sh -c 'git commit --amend --author \"$1\" -C HEAD' -
 	latest-version = !git fetch -t -p && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-	vimdiff = difftool -y -t vimdiff
 [color]
 	diff = auto
 	status = auto
@@ -24,10 +23,6 @@
 [user]
 	name = Daniel Freedman
 	email = dfreedm2@gmail.com
-[mergetool "fugitive"]
-	cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
-[merge]
-	tool = fugitive
 [pager]
-	diff = diff-so-fancy | less --tabs=4 -RFX
-	show = diff-so-fancy | less --tabs=4 -RFX
+	diff = diff-so-fancy | less --tabs=2 -RFX
+	show = diff-so-fancy | less --tabs=2 -RFX
