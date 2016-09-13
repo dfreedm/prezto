@@ -13,7 +13,6 @@ fi
 # Customize to your needs...
 path=(
   ${HOME}/.zprezto/bin
-  ${HOME}/.zprezto/runcoms/diff-so-fancy
   $path
 )
 
