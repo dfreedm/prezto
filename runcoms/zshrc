@@ -208,4 +208,10 @@ fi
 if (( $+commands[packer] )); then
   alias packer='packer --auronly'
 fi
+
+if (( $+commands[pacman] )); then
+  if pacman -Qi qt5-styleplugins >/dev/null 2>&1; then
+    export QT_QPA_PLATFORMTHEME="gtk2"
+  fi
+fi
 #  vim: set ts=2 sw=2 tw=80:
