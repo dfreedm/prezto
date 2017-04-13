@@ -13,3 +13,4 @@ tags
 *.aux
 *.dvi
 *.mode*v*
+.vscode
