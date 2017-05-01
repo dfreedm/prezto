@@ -2,7 +2,7 @@
 	ci = commit
 	co = checkout
 	d = diff
-	di = diff --color-words
+	dw = diff --color-words
 	ds = diff --staged
 	st = status --short --branch
 	update-submodules = !git submodule foreach git pull origin master
