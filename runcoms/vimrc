@@ -66,12 +66,11 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'w0ng/vim-hybrid'
+Plug 'dracula/vim'
 call plug#end()
 
 " ---- Load colorscheme after pathogen ----
-set background=dark
-colorscheme hybrid
+colorscheme dracula
 
 " ---- Filetypes ----
 if has('autocmd')
