@@ -19,11 +19,11 @@
 	branch = auto
 [core]
 	excludesfile = ~/.gitignore
+	pager = diff-so-fancy | less --tabs=2 -RFX
 [push]
 	default = simple
 [user]
 	name = Daniel Freedman
 	email = dfreedm2@gmail.com
-[pager]
-	diff = diff-so-fancy | less --tabs=2 -RFX
-	show = diff-so-fancy | less --tabs=2 -RFX
+[diff]
+	indentHeuristic = true
