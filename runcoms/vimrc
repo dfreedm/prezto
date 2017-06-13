@@ -66,7 +66,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'dracula/vim'
+Plug 'dracula/vim', {'as': 'dracula'}
 call plug#end()
 
 " ---- Load colorscheme after pathogen ----
@@ -241,9 +241,6 @@ endif
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
    runtime! macros/matchit.vim
 endif
-
-" ---- Gundo ----
-nnoremap <leader>u :UndotreeToggle<CR>
 
 " ---- NERDCommenter ----
 let g:NERDSpaceDelims = 1
