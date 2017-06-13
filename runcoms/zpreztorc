@@ -119,6 +119,13 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 # zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
 
 #
+# Python
+#
+
+# Auto switch the Python virtualenv on directory change.
+# zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
+
+#
 # Screen
 #
 
@@ -187,3 +194,7 @@ zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 
 # Integrate with iTerm2.
 zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+# zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+
+# Set the default session name:
+# zstyle ':prezto:module:tmux:session' name 'YOUR DEFAULT SESSION NAME'
