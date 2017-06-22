@@ -27,3 +27,5 @@
 	email = dfreedm2@gmail.com
 [diff]
 	indentHeuristic = true
+[include]
+	path = ~/.gitconfig-work
