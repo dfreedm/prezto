@@ -204,8 +204,4 @@ if command -v infocmp >/dev/null 2>&1 ; then
       ;;
   esac
 fi
-
-if (( $+commands[packer] )); then
-  alias packer='packer --auronly'
-fi
 #  vim: set ts=2 sw=2 tw=80:
