@@ -29,6 +29,10 @@ fi
 
 alias time='command time'
 
+if (( $+commands[npx] )); then
+  alias npx="npx --no-install"
+fi
+
 err ()
 {
   case $1 in
