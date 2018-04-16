@@ -67,6 +67,7 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'dracula/vim', {'as': 'dracula'}
+Plug 'cdata/vim-tagged-template'
 call plug#end()
 
 " ---- Load colorscheme after pathogen ----
@@ -276,3 +277,9 @@ nnoremap <silent><leader>b :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore = {
 \ 'dir': '\v[\/](node_modules|bower_components)'
 \}
+
+" ---- vim-tagged-template ----
+let g:taggedtemplate#tagSyntaxMap = {
+\ "html": "html"
+\}
+autocmd FileType javascript,javascript.jsx,typescript,typescript.tsx : call taggedtemplate#applySyntaxMap()
