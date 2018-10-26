@@ -18,7 +18,7 @@ if (( !$+commands[brew] )) && [[ -d ${HOME}/homebrew ]]; then
 fi
 
 #
-# Environmental Variables
+# Variables
 #
 
 # Load standard Homebrew shellenv into the shell session.
