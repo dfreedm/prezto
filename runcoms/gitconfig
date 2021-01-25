@@ -2,9 +2,9 @@
 	ci = commit
 	co = checkout
 	d = diff
-	dw = diff --color-words
 	ds = diff --staged
 	st = status --short --branch
+	sync-submodules = !git submodule update --init --recursive
 	update-submodules = !git submodule foreach git pull origin master
 	untrack-ignored = !git-untracked-ignored
 	info = !git-info
