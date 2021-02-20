@@ -36,15 +36,11 @@ zstyle ':prezto:load' pmodule \
   'history' \
   'directory' \
   'spectrum' \
-  'homebrew' \
   'node' \
   'utility' \
-  'go' \
   'git' \
   'archive' \
-  'rsync' \
   'tmux' \
-  'ruby' \
   'syntax-highlighting' \
   'history-substring-search' \
   'completion' \
