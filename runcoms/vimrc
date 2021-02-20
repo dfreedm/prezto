@@ -44,7 +44,9 @@ set visualbell             " Turn visual bell on
 set t_vb=                  " Make the visual bell emit nothing
 set showcmd                " Show the current command
 set number
-set diffopt+=iwhite
+if has('diff')
+   set diffopt+=iwhite     " Ignore whitespace diffs
+endif
 set showmatch
 set display=lastline,uhex  " cut the line off at a real character, show hex as <xx>
 set shiftround
