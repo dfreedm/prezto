@@ -43,13 +43,15 @@ set noerrorbells           " Disable error bells
 set visualbell             " Turn visual bell on
 set t_vb=                  " Make the visual bell emit nothing
 set showcmd                " Show the current command
-set number
+set number                 " Show line numbers
 if has('diff')
+   set diffopt=filler      " keep lines synced in diff view with blanks
+   set diffopt+=closeoff   " close diff view when one side is closed
    set diffopt+=iwhite     " Ignore whitespace diffs
 endif
-set showmatch
+set showmatch              " Highlight matching brackets when a new one is inserted
 set display=lastline,uhex  " cut the line off at a real character, show hex as <xx>
-set shiftround
+set shiftround             " Round intends to multiples of 'shiftwidth'
 set splitbelow             " make new horizontal splits below
 set splitright             " make new horizontal splits to the right
 let mapleader=","          " comma is leader
