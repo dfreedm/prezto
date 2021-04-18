@@ -58,6 +58,7 @@ set splitright             " make new horizontal splits to the right
 let mapleader=","          " comma is leader
 set shortmess=atI          " use a lot of abbreviations
 set laststatus=2           " always show a statusline
+set bg=dark                " dark background
 
 " ---- plug ----
 call plug#begin('~/.vim/bundle')
@@ -71,12 +72,13 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'cdata/vim-tagged-template'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 " ---- Load colorscheme after pathogen ----
-colorscheme dracula
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
 
 " ---- Filetypes ----
 if has('autocmd')
