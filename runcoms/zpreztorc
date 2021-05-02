@@ -44,6 +44,7 @@ zstyle ':prezto:load' pmodule \
   'syntax-highlighting' \
   'history-substring-search' \
   'completion' \
+  'history-substring-search' \
   'prompt'
 
 #
