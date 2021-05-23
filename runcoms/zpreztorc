@@ -36,7 +36,6 @@ zstyle ':prezto:load' pmodule \
   'history' \
   'directory' \
   'spectrum' \
-  'node' \
   'utility' \
   'git' \
   'archive' \

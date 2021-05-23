@@ -41,6 +41,11 @@ fi
 # Zsh time is meh
 alias time='command time'
 
+# Initialize nvm
+if [[ -e ${HOME}/.nvm ]]; then
+  source ${HOME}/.nvm/nvm.sh
+fi
+
 # Don't allow npx to install commands
 if (( $+commands[npx] )); then
   alias npx="npx --no-install"
