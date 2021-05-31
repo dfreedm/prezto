@@ -31,3 +31,5 @@
 	path = ~/.gitconfig-work
 [pull]
 	rebase = false
+[interactive]
+	diffFilter = diff-so-fancy --patch
