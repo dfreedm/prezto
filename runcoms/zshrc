@@ -50,3 +50,12 @@ fi
 if (( $+commands[npx] )); then
   alias npx="npx --no-install"
 fi
+
+# Tmux helpers
+if (( $+commands[tmux] )); then
+  alias tmuxl="tmux list-sessions"
+  function tmuxa {
+    local name="${1:-prezto}"
+    tmux new-session -A -s "${name}"
+  }
+fi
