@@ -287,6 +287,7 @@ let g:ctrlp_custom_ignore = {
 
 " ---- vim-tagged-template ----
 let g:taggedtemplate#tagSyntaxMap = {
-\ "html": "html"
+\ "html": "html",
+\ "css": "css"
 \}
 autocmd FileType javascript,javascript.jsx,typescript,typescript.tsx : call taggedtemplate#applySyntaxMap()
