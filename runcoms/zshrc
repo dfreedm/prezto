@@ -59,3 +59,8 @@ if (( $+commands[tmux] )); then
     tmux new-session -A -s "${name}"
   }
 fi
+
+# Use doas instead of sudo if installed
+if (( $+commands[doas] )); then
+  alias sudo="doas"
+fi
