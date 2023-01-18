@@ -66,7 +66,7 @@ if (( $+commands[doas] )); then
 fi
 
 # Set some ENV variables for apps in Wayland
-if [ ${XDG_SESSION_TYPE} = 'wayland' ]; then
+if [[ ${XDG_SESSION_TYPE} == 'wayland' ]]; then
   # Firefox
   export MOZ_ENABLE_WAYLAND=1
   # VLC
