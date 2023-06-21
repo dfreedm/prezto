@@ -65,15 +65,3 @@ if (( $+commands[doas] )); then
   alias sudo="doas"
 fi
 
-# Set some ENV variables for apps in Wayland
-if [[ ${XDG_SESSION_TYPE} == 'wayland' ]]; then
-  # Firefox
-  export MOZ_ENABLE_WAYLAND=1
-  # VLC
-  export QT_QPA_PLATFORM=wayland
-fi
-
-if [[ ${XDG_SESSION_TYPE} == 'x11' ]]; then
-  # Firefox use native scrolling
-  export MOZ_USE_XINPUT2=1
-fi
