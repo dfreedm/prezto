@@ -11,28 +11,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-# Add binaries in zprezto repo to path
-path=(
-  ${HOME}/.zprezto/bin
-  $path
-)
-
-# Add binaries in ~/bin to path
-if [[ -e ${HOME}/bin ]]; then
-  path=(
-    ${HOME}/bin
-    $path
-  )
-fi
-
-# Add rust binaries to path
-if [[ -e ${HOME}/.cargo/bin ]]; then
-  path=(
-    ${HOME}/.cargo/bin
-    $path
-  )
-fi
-
 # Debian ack is named ack-grep
 if (( $+commands[ack-grep] )); then
   alias ack=ack-grep
