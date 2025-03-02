@@ -22,6 +22,11 @@ alias time='command time'
 # Initialize nvm
 if [[ -e ${HOME}/.nvm ]]; then
   source ${HOME}/.nvm/nvm.sh
+  function nvm-latest-lts {
+    local current=`nvm current`
+    nvm install --lts --reinstall-packages-from=$current
+    nvm uninstall $current
+  }
 fi
 
 # Don't allow npx to install commands
