@@ -82,6 +82,8 @@ if [[ ${XDG_SESSION_TYPE} == 'wayland' ]]; then
   export MOZ_ENABLE_WAYLAND=1
   # VLC
   export QT_QPA_PLATFORM=wayland
+  # NixOS
+  export NIXOS_OZONE_WL=1
 fi
 
 if [[ ${XDG_SESSION_TYPE} == 'x11' ]]; then
