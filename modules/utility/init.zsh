@@ -155,6 +155,9 @@ else
   elif (( $+commands[xsel] )); then
     alias pbcopy='xsel --clipboard --input'
     alias pbpaste='xsel --clipboard --output'
+  elif (( $+commands[wl-copy] && $+commands[wl-paste] )); then
+    alias pbcopy='wl-copy'
+    alias pbpaste='wl-paste'
   fi
 fi
 
