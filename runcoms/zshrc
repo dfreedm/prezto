@@ -41,6 +41,12 @@ if (( $+commands[tmux] )); then
     local name="${1:-prezto}"
     tmux new-session -A -s "${name}"
   }
+  function _tmuxa {
+    local -a sessions
+    sessions=(${(f)"$(tmux list-sessions -F '#S' 2>/dev/null)"})
+    _describe 'session' sessions
+  }
+  compdef _tmuxa tmuxa
 fi
 
 # Use doas instead of sudo if installed
